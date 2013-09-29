@@ -8,3 +8,6 @@ all:
 clean:
 	rm -f pecomparator
 
+install:
+	cp pecomparator /usr/local/bin/
+
