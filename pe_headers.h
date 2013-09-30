@@ -104,7 +104,7 @@ typedef struct _IMAGE_DOS_HEADER
      WORD e_oemid;
      WORD e_oeminfo;
      WORD e_res2[10];
-     LONG e_lfanew;
+     DWORD e_lfanew;
 } IMAGE_DOS_HEADER, *PIMAGE_DOS_HEADER;
 
 typedef struct _IMAGE_IMPORT_DESCRIPTOR {
@@ -150,7 +150,7 @@ typedef struct _IMAGE_THUNK_DATA {
 #define FIELD_OFFSET(type,field) ((LONG)&(((type *)0)->field))
 #endif
 
-#define IMAGE_FIRST_SECTION(h) ((PIMAGE_SECTION_HEADER)((DWORD)h+FIELD_OFFSET(IMAGE_NT_HEADERS,OptionalHeader)+((PIMAGE_NT_HEADERS)(h))->FileHeader.SizeOfOptionalHeader))
+#define IMAGE_FIRST_SECTION(h) ((PIMAGE_SECTION_HEADER)((ULONG)h+FIELD_OFFSET(IMAGE_NT_HEADERS,OptionalHeader)+((PIMAGE_NT_HEADERS)(h))->FileHeader.SizeOfOptionalHeader))
 
 // Matt Pietrek's functions
 PIMAGE_SECTION_HEADER GetEnclosingSectionHeader(DWORD_PTR rva, PIMAGE_NT_HEADERS pNTHeader) {
